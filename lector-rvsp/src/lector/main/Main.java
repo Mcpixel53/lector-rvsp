@@ -11,6 +11,7 @@ public class Main {
 		JFrame window = new JFrame("Title");
 		OneWord ow = new OneWord();
 		ow.setWord("Supercalifragilisticoespialidoso");
+		//ow.setWord("Shiki");
 		window.add(ow);
 		window.setSize(new Dimension(400, 60));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
