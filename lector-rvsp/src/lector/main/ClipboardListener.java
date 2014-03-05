@@ -11,11 +11,12 @@ import java.io.IOException;
 class ClipboardListener implements ClipboardOwner, Runnable {
 
 	private Clipboard sysClip = Toolkit.getDefaultToolkit().getSystemClipboard();
+	private String content;
 
 	public void run() {
 		Transferable trans = sysClip.getContents(this);
 		regainOwnership(trans);
-		System.out.println("Listening to board...");
+
 		while (true) {
 			try {
 				Thread.sleep(10000);
@@ -23,6 +24,10 @@ class ClipboardListener implements ClipboardOwner, Runnable {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public String getContent() {
+		return content;
 	}
 
 	@Override
@@ -39,7 +44,7 @@ class ClipboardListener implements ClipboardOwner, Runnable {
 
 	private void processContents(Transferable t) {
 		if(t.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-			String content = null;
+			content = null;
 
 			try {
 				content = (String) t.getTransferData(DataFlavor.stringFlavor);
@@ -49,7 +54,11 @@ class ClipboardListener implements ClipboardOwner, Runnable {
 				e1.printStackTrace();
 			}
 			
-			System.out.println("Processing: " + content);
+			if(content != null) {
+				synchronized(this) {
+					notifyAll();
+				}
+			}
 		}
 
 	}
