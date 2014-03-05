@@ -66,7 +66,7 @@ public class Lector {
 
 	public static void main(String[] args) {
 		Lector lector = new Lector();
-		lector.setWordsPerMinute(400);
+		lector.setWordsPerMinute(600);
 		lector.work();
 	}
 

@@ -18,12 +18,13 @@ public class OneWord extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 3568780586785687917L;
 	private int orp, posBeforeOrp, posOrp, posAfterOrp, baseLine;
-	private float lineWidth = 3f, markerPos = 0.3f;
+	private float lineWidth = 2f, markerPos = 0.3f;
 	private String word, strBeforeOrp, strOrp, strAfterOrp;
 	private Font font;
-	private Color txtColor = Color.BLACK;
-	private Color orpColor = Color.RED;
-	private Color lineColor = Color.BLACK;
+	private Color bgColor = new Color(0.95f, 0.9f, 0.9f);
+	private Color txtColor = new Color(0.1f, 0.1f, 0.1f);
+	private Color orpColor = new Color(0.8f, 0f, 0f);
+	private Color lineColor = txtColor;
 	private boolean calculatedPos = false;
 
 	private static final int[] TABLE = {0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3};
@@ -58,7 +59,7 @@ public class OneWord extends JPanel implements ActionListener {
 	}
 	
 	public OneWord() {
-		setBackground(Color.WHITE);
+		setBackground(bgColor);
 		font = new Font("SansSerif", Font.PLAIN, 22);
 	}
 	
