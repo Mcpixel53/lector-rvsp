@@ -9,6 +9,9 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import java.text.Normalizer;
+import java.util.regex.Pattern;
+
 import javax.swing.JPanel;
 
 public class OneWord extends JPanel {
@@ -17,19 +20,33 @@ public class OneWord extends JPanel {
 	private int orp, posBeforeOrp, posOrp, posAfterOrp, baseLine;
 	private float lineWidth = 2f, markerPos = 0.3f;
 	private String word, strBeforeOrp, strOrp, strAfterOrp;
-	private Font font = new Font("SansSerif", Font.PLAIN, 20);
+	private Font font;
 	private Color txtColor = Color.BLACK;
 	private Color orpColor = Color.RED;
 	private Color lineColor = Color.BLACK;
 	private boolean calculatedPos = false;
 
-	private int getORP(String str) {
-		final int[] table = {0, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4};
+	private static final int[] TABLE = {0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3};
+
+/*	The following turned out to be unnecessary as length()
+	returns the right number of characters even with diacritics. */
+
+//	private static final Pattern DIACRITICS_AND_FRIENDS = Pattern.compile("[\\p{InCombiningDiacriticalMarks}\\p{IsLm}\\p{IsSk}]+");
+//
+//	private static String stripDiacritics(String str) {
+//	    str = Normalizer.normalize(str, Normalizer.Form.NFD);
+//	    str = DIACRITICS_AND_FRIENDS.matcher(str).replaceAll("");
+//	    return str;
+//	}
+
+	private static int getORP(final String str) {
+		//int length = stripDiacritics(str).length();
 		int length = str.length();
 		
 		if(length < 1) return 0;
-		if(length > 13) return 5;
-		return table[length];
+		if(length > 13) return 4;
+		System.out.println(TABLE[length]);
+		return TABLE[length];
 	}
 	
 	private void calcPositions(Graphics2D g2) {
@@ -43,9 +60,10 @@ public class OneWord extends JPanel {
 	
 	public OneWord() {
 		setBackground(Color.WHITE);
+		font = new Font("SansSerif", Font.PLAIN, 20);
 	}
 	
-	public void setWord(String _word) {
+	public void setWord(final String _word) {
 		word = _word;
 		orp = getORP(_word);
 		
