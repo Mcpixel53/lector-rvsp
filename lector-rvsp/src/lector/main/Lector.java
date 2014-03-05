@@ -1,31 +1,13 @@
 package lector.main;
 
-import java.awt.Dimension;
-
-import javax.swing.JFrame;
-
 public class Lector {
 
-	private final JFrame window;
-	private final OneWord oneWord;
-	private final ClipboardListener cbLis;
-	private int timeBetweenWords = 240;
-	
+	private final ClipboardListener cbLis = new ClipboardListener();
+	private final LectorWindow window = new LectorWindow();;
+	private final OneWord oneWord = window.getOneWord();
+	private int timeBetweenWords;
+
 	private Lector() {
-		window = new JFrame();
-		DraggerListener dragger = new DraggerListener(window);
-		window.addMouseListener(dragger);
-		window.addMouseMotionListener(dragger);
-		oneWord = new OneWord();
-		window.add(oneWord);
-		window.setSize(new Dimension(400, 60));
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setUndecorated(true);
-		window.setResizable(false);
-		window.setAlwaysOnTop(true);
-		window.setVisible(false);
-		
-		cbLis = new ClipboardListener();
 		Thread cbLisThread = new Thread(cbLis);
 		cbLisThread.start();
 	}
@@ -39,8 +21,7 @@ public class Lector {
 		String[] words = text.split("\\s");
 		
 		oneWord.setWord(words[0]);
-		window.setVisible(true);
-		window.repaint();
+		window.showDisplay();
 		try {
 			Thread.sleep(240);
 		} catch (InterruptedException e1) {
@@ -50,12 +31,11 @@ public class Lector {
 		for(String w : words) {
 			if(!w.equals("")) {
 				oneWord.setWord(w);
-				window.repaint();
 				try {
 					long pause = 0;
-					if(w.charAt(w.length()-1) == ',') pause = 200;
-					if(w.charAt(w.length()-1) == ':') pause = 200;
-					if(w.charAt(w.length()-1) == '.') pause = 300;
+					if(w.charAt(w.length()-1) == ',') pause = 150;
+					if(w.charAt(w.length()-1) == ':') pause = 150;
+					if(w.charAt(w.length()-1) == '.') pause = 200;
 					Thread.sleep(timeBetweenWords + pause);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -68,7 +48,7 @@ public class Lector {
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
-		window.setVisible(false);
+		window.hideDisplay();
 	}
 	
 	private void work() {

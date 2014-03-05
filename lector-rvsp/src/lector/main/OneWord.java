@@ -7,15 +7,18 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+
 import javax.swing.JPanel;
 
-public class OneWord extends JPanel {
+public class OneWord extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 3568780586785687917L;
 	private int orp, posBeforeOrp, posOrp, posAfterOrp, baseLine;
-	private float lineWidth = 2f, markerPos = 0.3f;
+	private float lineWidth = 3f, markerPos = 0.3f;
 	private String word, strBeforeOrp, strOrp, strAfterOrp;
 	private Font font;
 	private Color txtColor = Color.BLACK;
@@ -56,16 +59,19 @@ public class OneWord extends JPanel {
 	
 	public OneWord() {
 		setBackground(Color.WHITE);
-		font = new Font("SansSerif", Font.PLAIN, 20);
+		font = new Font("SansSerif", Font.PLAIN, 22);
 	}
 	
 	public void setWord(final String _word) {
 		word = _word;
 		orp = getORP(_word);
 		
-		strBeforeOrp = word.substring(0, orp);
-		strOrp = word.substring(orp, orp+1);
-		strAfterOrp = word.substring(orp+1);
+		if(word.length() > 0) {
+			strBeforeOrp = word.substring(0, orp);
+			strOrp = word.substring(orp, orp+1);
+			strAfterOrp = word.substring(orp+1);
+		}
+
 		calculatedPos = false;
 	}
 
@@ -74,7 +80,7 @@ public class OneWord extends JPanel {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
 		
-		if(word != null) {
+		if(word != null && !word.equals("")) {
 			g2.setRenderingHint(
 			        RenderingHints.KEY_TEXT_ANTIALIASING,
 			        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
@@ -104,5 +110,10 @@ public class OneWord extends JPanel {
 		g2.draw(marker);
 		g2.translate(0, getHeight()*0.8f);
 		g2.draw(marker);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		repaint();
 	}
 }
