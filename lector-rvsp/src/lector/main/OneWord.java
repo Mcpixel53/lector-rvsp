@@ -9,9 +9,6 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
-import java.text.Normalizer;
-import java.util.regex.Pattern;
-
 import javax.swing.JPanel;
 
 public class OneWord extends JPanel {
@@ -45,7 +42,6 @@ public class OneWord extends JPanel {
 		
 		if(length < 1) return 0;
 		if(length > 13) return 4;
-		System.out.println(TABLE[length]);
 		return TABLE[length];
 	}
 	

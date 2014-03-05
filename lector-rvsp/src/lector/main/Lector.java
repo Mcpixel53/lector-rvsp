@@ -1,19 +1,16 @@
 package lector.main;
 
 import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
 
 import javax.swing.JFrame;
 
 public class Lector {
 
-	private static final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 	private JFrame window;
 	private OneWord oneWord;
 	
 	private Lector() {
-		window = new JFrame("Lector");
+		window = new JFrame();
 		DraggerListener dragger = new DraggerListener(window);
 		window.addMouseListener(dragger);
 		window.addMouseMotionListener(dragger);
@@ -25,10 +22,10 @@ public class Lector {
 		window.setResizable(false);
 		window.setVisible(true);
 		
-		oneWord.setWord("Retortijón");
+		oneWord.setWord("Foquita");
 	}
 	
-	private void mainLoop() {
+	private void work() {
 		while(true) {
 			try {
 				Thread.sleep(1);
@@ -40,7 +37,10 @@ public class Lector {
 
 	public static void main(String[] args) {
 		Lector lector = new Lector();
-		lector.mainLoop();
+		ClipboardListener cbLis = new ClipboardListener();
+		Thread cbLisThread = new Thread(cbLis);
+		cbLisThread.start();
+		lector.work();
 	}
 
 }
