@@ -48,12 +48,18 @@ public class Lector {
 		}
 		
 		for(String w : words) {
-			oneWord.setWord(w);
-			window.repaint();
-			try {
-				Thread.sleep(timeBetweenWords);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			if(!w.equals("")) {
+				oneWord.setWord(w);
+				window.repaint();
+				try {
+					long pause = 0;
+					if(w.charAt(w.length()-1) == ',') pause = 200;
+					if(w.charAt(w.length()-1) == ':') pause = 200;
+					if(w.charAt(w.length()-1) == '.') pause = 300;
+					Thread.sleep(timeBetweenWords + pause);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		
@@ -80,7 +86,7 @@ public class Lector {
 
 	public static void main(String[] args) {
 		Lector lector = new Lector();
-		lector.setWordsPerMinute(500);
+		lector.setWordsPerMinute(400);
 		lector.work();
 	}
 
