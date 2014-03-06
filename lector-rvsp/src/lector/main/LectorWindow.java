@@ -38,7 +38,7 @@ public class LectorWindow extends JFrame {
 			JOptionPane.showMessageDialog(this,
 			    "Your OS doesn't support sytem tray.\n" +
 			    "Lector will execute without a tray icon.",
-			    "Warning",
+			    Lector.APP_NAME,
 			    JOptionPane.WARNING_MESSAGE);
 			return;
 		}
@@ -48,7 +48,7 @@ public class LectorWindow extends JFrame {
 		// For eclipse
 		Image iconImage = Toolkit.getDefaultToolkit().getImage("res/lector/resources/icon-16x16.png");			
 		// For compilation
-//		Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/conway/images/play-button.png"));
+//		Image iconImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/lector/resources/icon-16x16.png"));
 
 		TrayIcon trayIcon = new TrayIcon(iconImage, Lector.APP_NAME);
 		try {
