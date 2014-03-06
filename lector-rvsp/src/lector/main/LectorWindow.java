@@ -46,9 +46,9 @@ public class LectorWindow extends JFrame {
 		SystemTray tray = SystemTray.getSystemTray();
 
 		// For eclipse
-		Image iconImage = Toolkit.getDefaultToolkit().getImage("res/lector/resources/icon-16x16.png");			
+//		Image iconImage = Toolkit.getDefaultToolkit().getImage("res/lector/resources/icon-16x16.png");			
 		// For compilation
-//		Image iconImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/lector/resources/icon-16x16.png"));
+		Image iconImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/lector/resources/icon-16x16.png"));
 
 		TrayIcon trayIcon = new TrayIcon(iconImage, Lector.APP_NAME);
 		try {
