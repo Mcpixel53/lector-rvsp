@@ -1,6 +1,8 @@
 package lector.main;
 
 public class Lector {
+	
+	public static final String APP_NAME = "Lector";
 
 	private final ClipboardListener cbLis = new ClipboardListener();
 	private final LectorWindow window = new LectorWindow();;

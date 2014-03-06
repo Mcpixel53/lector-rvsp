@@ -1,8 +1,14 @@
 package lector.main;
 
+import java.awt.AWTException;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.SystemTray;
+import java.awt.Toolkit;
+import java.awt.TrayIcon;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class LectorWindow extends JFrame {
@@ -23,6 +29,33 @@ public class LectorWindow extends JFrame {
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setVisible(false);
+		
+		setUpSysTray();
+	}
+	
+	private void setUpSysTray() {
+		if(!SystemTray.isSupported()) {
+			JOptionPane.showMessageDialog(this,
+			    "Your OS doesn't support sytem tray.\n" +
+			    "Lector will execute without a tray icon.",
+			    "Warning",
+			    JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		
+		SystemTray tray = SystemTray.getSystemTray();
+
+		// For eclipse
+		Image iconImage = Toolkit.getDefaultToolkit().getImage("res/lector/resources/icon-16x16.png");			
+		// For compilation
+//		Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/conway/images/play-button.png"));
+
+		TrayIcon trayIcon = new TrayIcon(iconImage, Lector.APP_NAME);
+		try {
+			tray.add(trayIcon);
+		} catch (AWTException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void showDisplay() {
