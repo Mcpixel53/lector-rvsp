@@ -16,7 +16,7 @@ public class LectorTrayIcon extends TrayIcon {
 	public static final Image iconImageEnabled = Toolkit.getDefaultToolkit().getImage(LectorTrayIcon.class.getResource("/lector/resources/icon-16x16.png"));
 	public static final Image iconImageDisabled = Toolkit.getDefaultToolkit().getImage(LectorTrayIcon.class.getResource("/lector/resources/icon-16x16.png"));
 	
-	private final JMenuItem configJMenuItem = new JMenuItem("Configure...");
+//	private final JMenuItem configJMenuItem = new JMenuItem("Configure...");
 	private final JMenuItem closeJMenuItem = new JMenuItem("Close");
 	private final JPopupMenu jpopup = new JPopupMenu();
 	
@@ -59,9 +59,9 @@ public class LectorTrayIcon extends TrayIcon {
 
 	private void setUpPopup() {
 		LectorTrayMenuListener l = new LectorTrayMenuListener();
-		jpopup.add(configJMenuItem);
-		configJMenuItem.addActionListener(l);
-		jpopup.addSeparator();
+//		jpopup.add(configJMenuItem);
+//		configJMenuItem.addActionListener(l);
+//		jpopup.addSeparator();
 		jpopup.add(closeJMenuItem);
 		closeJMenuItem.addActionListener(l);
 	}
