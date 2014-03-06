@@ -1,4 +1,4 @@
-package lector.main;
+package lector.ui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

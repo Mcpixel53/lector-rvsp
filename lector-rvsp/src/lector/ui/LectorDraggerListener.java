@@ -1,4 +1,4 @@
-package lector.main;
+package lector.ui;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -7,12 +7,12 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
 
-public class DraggerListener implements MouseListener, MouseMotionListener
+public class LectorDraggerListener implements MouseListener, MouseMotionListener
 {
     private JFrame frame;
     private Point offset;
 
-    public DraggerListener(JFrame _frame) {
+    public LectorDraggerListener(JFrame _frame) {
         frame = _frame;
     }
     
