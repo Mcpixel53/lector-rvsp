@@ -7,9 +7,13 @@ public class LectorTrayMenuListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("Close")) {
+		switch (e.getActionCommand()) {
+		case "Close":
 			System.exit(0);
+		case "Configure...":
+			LectorConfigWindow.displayConfigWindow();
+		default:
+			break;
 		}
 	}
-
 }

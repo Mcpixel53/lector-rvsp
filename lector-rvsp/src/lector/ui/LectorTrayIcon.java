@@ -9,14 +9,15 @@ import java.awt.event.MouseListener;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import lector.main.Control;
 import lector.main.Lector;
 
 public class LectorTrayIcon extends TrayIcon {
 
-	public static final Image iconImageEnabled = Toolkit.getDefaultToolkit().getImage(LectorTrayIcon.class.getResource("/lector/resources/icon-16x16.png"));
-	public static final Image iconImageDisabled = Toolkit.getDefaultToolkit().getImage(LectorTrayIcon.class.getResource("/lector/resources/icon-16x16.png"));
+	public static final Image iconImageEnabled = Toolkit.getDefaultToolkit().getImage(LectorTrayIcon.class.getResource("/lector/resources/icon-enabled-16x16.png"));
+	public static final Image iconImageDisabled = Toolkit.getDefaultToolkit().getImage(LectorTrayIcon.class.getResource("/lector/resources/icon-disabled-16x16.png"));
 	
-//	private final JMenuItem configJMenuItem = new JMenuItem("Configure...");
+	private final JMenuItem configJMenuItem = new JMenuItem("Configure...");
 	private final JMenuItem closeJMenuItem = new JMenuItem("Close");
 	private final JPopupMenu jpopup = new JPopupMenu();
 	
@@ -38,7 +39,10 @@ public class LectorTrayIcon extends TrayIcon {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(e.getButton() == MouseEvent.BUTTON1) {
-					// TODO: Toggle enable/disable
+					Control control = Lector.getControl();
+					boolean disabled = !control.isEnabled();
+					control.setEnabled(disabled);
+					setImage(disabled? iconImageEnabled : iconImageDisabled);
 				}
 			}
 
@@ -59,9 +63,9 @@ public class LectorTrayIcon extends TrayIcon {
 
 	private void setUpPopup() {
 		LectorTrayMenuListener l = new LectorTrayMenuListener();
-//		jpopup.add(configJMenuItem);
-//		configJMenuItem.addActionListener(l);
-//		jpopup.addSeparator();
+		jpopup.add(configJMenuItem);
+		configJMenuItem.addActionListener(l);
+		jpopup.addSeparator();
 		jpopup.add(closeJMenuItem);
 		closeJMenuItem.addActionListener(l);
 	}

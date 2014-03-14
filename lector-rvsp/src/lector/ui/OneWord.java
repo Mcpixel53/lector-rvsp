@@ -2,6 +2,7 @@ package lector.ui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -23,7 +24,7 @@ public class OneWord extends JPanel implements ActionListener {
 	private Font font;
 	private Color bgColor = new Color(0.95f, 0.9f, 0.9f);
 	private Color txtColor = new Color(0.1f, 0.1f, 0.1f);
-	private Color orpColor = new Color(0.8f, 0f, 0f);
+	private Color orpColor = txtColor; //new Color(0.8f, 0f, 0f);
 	private Color lineColor = txtColor;
 	private boolean calculatedPos = false;
 
@@ -60,6 +61,8 @@ public class OneWord extends JPanel implements ActionListener {
 	
 	public OneWord() {
 		setBackground(bgColor);
+		setMaximumSize(new Dimension(400, 60));
+		setMinimumSize(new Dimension(400, 60));
 		font = new Font("SansSerif", Font.PLAIN, 22);
 	}
 	
