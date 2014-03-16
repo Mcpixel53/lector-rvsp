@@ -16,7 +16,7 @@ public class Control {
 		cbLisThread.start();
 	}
 	
-	void setWordsPerMinute(int wordsPerMinute) {
+	public void setWordsPerMinute(int wordsPerMinute) {
 		float wpm = wordsPerMinute;
 		timeBetweenWords = (int) (60000f/wpm);
 	}

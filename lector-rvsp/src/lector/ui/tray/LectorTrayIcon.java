@@ -1,4 +1,4 @@
-package lector.ui;
+package lector.ui.tray;
 
 import java.awt.Image;
 import java.awt.Toolkit;

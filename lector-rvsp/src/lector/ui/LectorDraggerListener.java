@@ -7,12 +7,12 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
 
-public class LectorDraggerListener implements MouseListener, MouseMotionListener
+public final class LectorDraggerListener implements MouseListener, MouseMotionListener
 {
     private JFrame frame;
     private Point offset;
 
-    public LectorDraggerListener(JFrame _frame) {
+    protected LectorDraggerListener(JFrame _frame) {
         frame = _frame;
     }
     

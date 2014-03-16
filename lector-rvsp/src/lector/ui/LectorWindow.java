@@ -15,6 +15,7 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 
 import lector.main.Lector;
+import lector.ui.tray.LectorTrayIcon;
 
 public class LectorWindow extends JFrame {
 	

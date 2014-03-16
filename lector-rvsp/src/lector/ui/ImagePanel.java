@@ -15,7 +15,7 @@ public final class ImagePanel extends JPanel {
 	
 	private BufferedImage image;
 
-	public ImagePanel() {
+	protected ImagePanel() {
 		try {
 			image = ImageIO.read(ImagePanel.class.getResource("/lector/resources/background.png"));
 		} catch (IOException e) {

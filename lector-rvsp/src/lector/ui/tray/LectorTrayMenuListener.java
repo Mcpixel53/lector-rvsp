@@ -1,7 +1,9 @@
-package lector.ui;
+package lector.ui.tray;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import lector.ui.settings.LectorSettingsWindow;
 
 public class LectorTrayMenuListener implements ActionListener {
 
@@ -11,7 +13,7 @@ public class LectorTrayMenuListener implements ActionListener {
 		case "Close":
 			System.exit(0);
 		case "Configure...":
-			LectorConfigWindow.displayConfigWindow();
+			LectorSettingsWindow.displayConfigWindow();
 		default:
 			break;
 		}
